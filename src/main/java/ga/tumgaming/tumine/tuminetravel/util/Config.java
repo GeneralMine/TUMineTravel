@@ -6,11 +6,13 @@ import org.bukkit.plugin.Plugin;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Map;
+import java.util.Set;
 
 public class Config {
 
-	private static YamlConfiguration config;
-	private static File file;
+	private YamlConfiguration config;
+	private File file;
 
 	public Config(Plugin plugin, String configName) {
 		if (!plugin.getDataFolder().exists())
@@ -30,7 +32,7 @@ public class Config {
 		save();
 	}
 
-	private static void save() {
+	private void save() {
 		try {
 			config.save(file);
 		} catch (IOException e) {
@@ -49,7 +51,7 @@ public class Config {
 		save();
 	}
 
-	public static void reload() {
+	public void reload() {
 		save();
 		config = YamlConfiguration.loadConfiguration(file);
 	}
@@ -57,5 +59,9 @@ public class Config {
 	public void delete(String path) {
 		config.set(path, null);
 		save();
+	}
+	
+	public String[] getAllKeys() {
+		return config.getKeys(true).toArray(new String[config.getKeys(true).size()]);
 	}
 }

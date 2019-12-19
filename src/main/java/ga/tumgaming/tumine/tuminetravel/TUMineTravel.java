@@ -7,25 +7,26 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Logger;
 
-import ga.tumgaming.tumine.tuminetravel.listeners.BlockBreakListener;
-import ga.tumgaming.tumine.tuminetravel.listeners.ClickListener;
-import ga.tumgaming.tumine.tuminetravel.listeners.JoinListener;
-import ga.tumgaming.tumine.tuminetravel.listeners.SkillsCommand;
+import ga.tumgaming.tumine.tuminetravel.listeners.TravelCommand;
 import ga.tumgaming.tumine.tuminetravel.util.*;
 
 public class TUMineTravel extends JavaPlugin {
 
-	private static Config config;
+	private Config travelPoints;
+	private Config playerKnownPoints;
 	private static Plugin plugin;
-
+	private TravelManager travelManager;
 	@Override
 	public void onEnable() {
 		TUMineTravel.plugin = this;
 
-		config = new Config(plugin, "skills");
+		playerKnownPoints = new Config(plugin, "playerKnownPoints");
+		travelPoints = new Config(plugin, "travelPoints");
 		
-	    // Register our command "createInbox" (set an instance of your command class as executor)
-	    this.getCommand("skills").setExecutor(new SkillsCommand());
+		travelManager = new TravelManager(playerKnownPoints, travelPoints);
+		
+	    // Register our command "travel" (set an instance of your command class as executor)
+	    this.getCommand("travel").setExecutor(new TravelCommand(travelManager));
 		
 		registerEvents();
 
@@ -43,10 +44,5 @@ public class TUMineTravel extends JavaPlugin {
 
 	private static void registerEvents() {
 		PluginManager pluginManager = Bukkit.getPluginManager();
-
-		pluginManager.registerEvents(new JoinListener(), plugin);
-		pluginManager.registerEvents(new ClickListener(), plugin);
-		pluginManager.registerEvents(new BlockBreakListener(), plugin);
 	}
-
 }

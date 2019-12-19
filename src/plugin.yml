@@ -1,4 +1,4 @@
-main: ga.tumgaming.tumine.tuminetemplate.TUMineTravel
+main: ga.tumgaming.tumine.tuminetravel.TUMineTravel
 name: ${project.artifactId}
 prefix: ${project.artifactId}
 author: GeneralMine, HrMoritz, Laurox

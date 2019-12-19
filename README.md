@@ -1,16 +1,22 @@
-# TUMineTemplate
-## How to use this template
-1. Go to this template and press "use template"
-2. Create your repository
-3. clone it to your device
-4. insert lib/spigot-version.jar to use the mojang api. If not needed you can delete the dependency section in the pom.xml
-Use git add lib/* -f
-5. open your IDE
-6. refactor/rename the following files for your plugin
-- rename pom.xml: groupId, artifactId
-- rename plugin.yml: name, prefix, main
-- refactor all packages and the main class (according to the main in plugin.yml)
-7. Dont forget to change the README
-8. Set up Github Secrets in repository for github actions, ask the technical staff on our [Discord](https://discord.gg/mnjYrTa) to gain the values
-9. Create develop branch
-10. 
+# TUMineTravel
+## Functionality
+A travel guide (Citizen NPC) calls ``/travel travel <player> <currentPoint>``
+Player discovers point and teleports to destination point if he has a dircetion map in his hands
+## Commands
+- travel
+	- add
+		- <name>
+		Creates a travel point with <name> at current commandSender position
+	- remove/delete
+		- <name>
+		removes travel point with <name>
+	- list
+		lists all travel points
+	- travel
+	travel npc runs this command
+		- <player>
+			- <currentPoint>
+			<player> gets to know the <currentPoint>
+				- <destinationPoint>
+				<player> teleports to <destinationPoint>
+				<destinationPoint> is normally got from directionMap <player> hands in his hands
