@@ -31,6 +31,7 @@ public class TUMineTravel extends JavaPlugin {
 		registerEvents();
 
 		log("Plugin erfolgreich geladen");
+		
 	}
 
 	/**
